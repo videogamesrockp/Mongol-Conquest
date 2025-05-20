@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3und8o15d5xv"
-path="res://.godot/imported/continue_button.png-0919c4db4d89507ec4835e2fa5400960.ctex"
+uid="uid://cu611c0144u23"
+path="res://.godot/imported/mongol_soldier.png-2ae674b14a59bd4ae7fa0fc8bc855526.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://continue_button.png"
-dest_files=["res://.godot/imported/continue_button.png-0919c4db4d89507ec4835e2fa5400960.ctex"]
+source_file="res://assets/sprites/mongol_soldier.png"
+dest_files=["res://.godot/imported/mongol_soldier.png-2ae674b14a59bd4ae7fa0fc8bc855526.ctex"]
 
 [params]
 

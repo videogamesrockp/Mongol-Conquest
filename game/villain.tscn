@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8be58y44pvq"]
+
+[ext_resource type="Script" uid="uid://dwnuhaehthqsh" path="res://scripts/villain_behavior.gd" id="1_hig5a"]
+[ext_resource type="Texture2D" uid="uid://c7xidgr5v3gci" path="res://assets/sprites/russianboy.png" id="2_hig5a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_014kd"]
+size = Vector2(32, 32)
+
+[node name="Villain" type="CharacterBody2D"]
+script = ExtResource("1_hig5a")
+
+[node name="Russian" type="Sprite2D" parent="."]
+texture = ExtResource("2_hig5a")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_014kd")

@@ -21,12 +21,6 @@ window/size/viewport_height=576
 window/size/mode=2
 window/stretch/mode="canvas_items"
 
-[layer_names]
-
-2d_physics/layer_1="Player Layer"
-2d_physics/layer_2="Enemy Layer"
-2d_physics/layer_3="Projectile Layer"
-
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

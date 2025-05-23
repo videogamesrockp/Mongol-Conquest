@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://cvaojg3wqvf1c" path="res://scripts/projectile_behavior.gd" id="1_qxf0c"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qxf0c"]
-radius = 1.0
-height = 28.0
+radius = 0.5
+height = 26.0
 
 [node name="Projectile" type="StaticBody2D"]
 collision_layer = 4

@@ -92,4 +92,5 @@ func spawn_bullet() -> void:
 	proj.set_velocity(Vector2(256, 0))
 	self.get_parent().add_child(proj)
 	proj.position = position
+	proj.position.y = int(proj.position.y / tile_size) * tile_size
 	proj.position.x += tile_size

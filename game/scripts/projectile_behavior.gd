@@ -33,5 +33,4 @@ func collision_detection() -> void:
 			break
 	if hitting_enemy:
 		hitting_enemy.take_damage(damage)
-		hitting_enemy.position.x += 64
 		self.queue_free()

@@ -3,11 +3,19 @@ extends CharacterBody2D
 const tile_size = 32
 var moving = false
 var input_dir = Vector2.ZERO
+var hitting_enemy = false
+var hitting_tile = false;
+var tilemap_layer
+var blocked_tile_ids
 
-func _physics_process(delta: float) -> void:
-	if is_colliding_with_enemy():
-		print("⚠️ Currently getting hit by an enemy at " + str(position.x) + ", " + str(position.y))
+func _ready():
+	tilemap_layer = get_node(self.get_meta("tilemap"))
+	blocked_tile_ids = self.get_meta("blocked_tile_ids")
+
+
 	
+func _physics_process(delta: float) -> void:
+	collision_detection()
 	if moving:
 		return
 	
@@ -26,12 +34,15 @@ func _physics_process(delta: float) -> void:
 
 func move():
 	var motion = input_dir * tile_size
-
-	# Check for potential collision
-	#if test_move(transform, motion):
-		#print("⚠️ Collision would occur at: ", position + motion)
-
+	# Check for banned tiles
+	if tilemap_layer :
+		if tilemap_layer.get_tileid_from_pos(Vector2(position.x + motion.x, position.y)) in blocked_tile_ids:
+			motion.x = 0
+		if tilemap_layer.get_tileid_from_pos(Vector2(position.x, position.y + motion.y)) in blocked_tile_ids:
+			motion.y = 0
+	
 	moving = true
+	
 	var tween = create_tween()
 	tween.tween_property(self, "position", position + motion, 0.25)
 	tween.tween_callback(Callable(self, "move_false"))
@@ -39,8 +50,8 @@ func move():
 func move_false():
 	moving = false
 
-
-func is_colliding_with_enemy() -> bool:
+func collision_detection() -> void:
+	
 	var space_state = get_world_2d().direct_space_state
 	var shape = $CollisionShape2D.shape
 
@@ -51,10 +62,8 @@ func is_colliding_with_enemy() -> bool:
 	shape_query.collide_with_bodies = true
 	shape_query.collide_with_areas = true
 
-	var results = space_state.intersect_shape(shape_query, 1)
+	var results = space_state.intersect_shape(shape_query)
 	for result in results:
 		if result.collider.is_in_group("villains"):
-			return true
-		else:
-			print("we have collided with something else (likely a brick)")
-	return false
+			print("⚠️ Currently getting hit by an enemy at " + str(position.x) + ", " + str(position.y))
+			hitting_enemy = true

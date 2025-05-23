@@ -3,7 +3,6 @@ extends CharacterBody2D
 const tile_size = 32
 var moving = false
 var input_dir = Vector2.ZERO
-var hitting_enemy = false
 var hitting_tile = false;
 var tilemap_layer
 var blocked_tile_ids
@@ -15,7 +14,7 @@ func _ready():
 
 	
 func _physics_process(delta: float) -> void:
-	collision_detection()
+		
 	if moving:
 		return
 	
@@ -28,6 +27,10 @@ func _physics_process(delta: float) -> void:
 		input_dir.x = 1
 	elif Input.is_action_pressed("ui_left"):
 		input_dir.x = -1
+	
+	
+	collision_detection()
+	
 
 	if input_dir != Vector2.ZERO:
 		move()
@@ -63,7 +66,16 @@ func collision_detection() -> void:
 	shape_query.collide_with_areas = true
 
 	var results = space_state.intersect_shape(shape_query)
+	var hitting_enemy = null
 	for result in results:
 		if result.collider.is_in_group("villains"):
 			print("⚠️ Currently getting hit by an enemy at " + str(position.x) + ", " + str(position.y))
-			hitting_enemy = true
+			hitting_enemy = result.collider
+			break
+	if hitting_enemy:
+		if hitting_enemy.position.x - position.x < tile_size:
+			position.x -= tile_size
+		elif position.x - hitting_enemy.position.x < tile_size:
+			position.x += tile_size
+		input_dir = Vector2.ZERO
+			

@@ -9,6 +9,8 @@ size = Vector2(32, 32)
 [node name="Villain" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_hig5a")
+metadata/strength = 30.0
+metadata/starting_health = 50.0
 
 [node name="Russian" type="Sprite2D" parent="."]
 texture = ExtResource("2_hig5a")

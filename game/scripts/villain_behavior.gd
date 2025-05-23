@@ -15,7 +15,7 @@ func _ready() -> void:
 	health = self.get_meta("starting_health")
 	add_to_group("villains")
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	update()
 
 func move() -> void:

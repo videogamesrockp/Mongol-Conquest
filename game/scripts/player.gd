@@ -7,12 +7,12 @@ var hitting_tile = false;
 var tilemap_layer
 var blocked_tile_ids
 var health = 100
+const projectile_scene = preload("res://projectile.tscn")
+
 
 func _ready():
 	tilemap_layer = get_node(self.get_meta("tilemap"))
 	blocked_tile_ids = self.get_meta("blocked_tile_ids")
-
-
 	
 func _physics_process(delta: float) -> void:
 		
@@ -28,6 +28,9 @@ func _physics_process(delta: float) -> void:
 		input_dir.x = 1
 	elif Input.is_action_pressed("ui_left"):
 		input_dir.x = -1
+		
+	if (Input.is_action_just_pressed("ui_select")):
+		spawn_bullet()
 	
 	
 	collision_detection()
@@ -78,9 +81,15 @@ func collision_detection() -> void:
 			position.x -= tile_size
 		elif position.x - hitting_enemy.position.x < tile_size:
 			position.x += tile_size
-		health -= 90
+		health -= 90 # change this
 		if health <= 0:
 			self.queue_free()
 			print ("you died!")
 		input_dir = Vector2.ZERO
 			
+func spawn_bullet() -> void:
+	var proj = projectile_scene.instantiate()
+	proj.set_velocity(Vector2(256, 0))
+	self.get_parent().add_child(proj)
+	proj.position = position
+	proj.position.x += tile_size

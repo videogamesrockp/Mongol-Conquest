@@ -1,7 +1,7 @@
 extends Node
 
 
-var villain_scene = preload("res://villain.tscn")
+const villain_scene = preload("res://villain.tscn")
 
 var army = []
 

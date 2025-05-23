@@ -25,6 +25,7 @@ window/stretch/mode="canvas_items"
 
 2d_physics/layer_1="Player Layer"
 2d_physics/layer_2="Enemy Layer"
+2d_physics/layer_3="Projectile Layer"
 
 [rendering]
 

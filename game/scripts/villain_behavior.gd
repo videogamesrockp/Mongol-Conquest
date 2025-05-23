@@ -10,10 +10,12 @@ func _ready() -> void:
 	health = self.get_meta("starting_health")
 	add_to_group("villains")
 
+func _physics_process(delta: float) -> void:
+	update()
+
 func move() -> void:
 	pos.x -= 32;
 	position = pos
-	update()
 		
 func update() -> void:
 	if (health <= 0):
@@ -21,4 +23,3 @@ func update() -> void:
 	
 func take_damage(dmg: int) -> void:
 	health -= dmg
-	update()

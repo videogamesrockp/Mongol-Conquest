@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c7xidgr5v3gci" path="res://assets/sprites/russianboy.png" id="2_hig5a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_014kd"]
-size = Vector2(32, 32)
+size = Vector2(32, 30)
 
 [node name="Villain" type="CharacterBody2D"]
 collision_layer = 2

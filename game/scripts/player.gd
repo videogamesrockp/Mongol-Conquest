@@ -6,6 +6,7 @@ var input_dir = Vector2.ZERO
 var hitting_tile = false;
 var tilemap_layer
 var blocked_tile_ids
+var health = 100
 
 func _ready():
 	tilemap_layer = get_node(self.get_meta("tilemap"))
@@ -77,5 +78,9 @@ func collision_detection() -> void:
 			position.x -= tile_size
 		elif position.x - hitting_enemy.position.x < tile_size:
 			position.x += tile_size
+		health -= 90
+		if health <= 0:
+			self.queue_free()
+			print ("you died!")
 		input_dir = Vector2.ZERO
 			

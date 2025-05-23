@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b07abksre0o5g" path="res://assets/field/brick.png" id="1_4nkto"]
 [ext_resource type="Texture2D" uid="uid://cu611c0144u23" path="res://assets/sprites/mongol_soldier.png" id="1_014kd"]
 [ext_resource type="Script" uid="uid://biepxqmsxonev" path="res://scripts/player.gd" id="1_bswci"]
-[ext_resource type="Texture2D" uid="uid://17gwpy048vly" path="res://assets/field/bush.png" id="2_fcfvj"]
+[ext_resource type="Texture2D" uid="uid://17gwpy048vly" path="res://assets/field/grass.png" id="2_fcfvj"]
 [ext_resource type="Script" uid="uid://clsqxijf87bkb" path="res://scripts/tilemap.gd" id="3_fcfvj"]
 [ext_resource type="Script" uid="uid://hn7bvnehtktv" path="res://scripts/enemy_army.gd" id="3_rus8k"]
 
@@ -48,6 +48,8 @@ centered = false
 
 [node name="Enemy Army" type="Node" parent="."]
 script = ExtResource("3_rus8k")
+metadata/player = NodePath("../Player")
+metadata/tilemap_layer = NodePath("../TileMapLayer")
 
 [node name="Timer" type="Timer" parent="Enemy Army"]
 wait_time = 1.3

@@ -13,7 +13,6 @@ func set_velocity(v: Vector2 )	:
 	velocity = v
 
 func collision_detection() -> void:
-	
 	var space_state = get_world_2d().direct_space_state
 	var shape = $CollisionShape2D.shape
 
@@ -27,7 +26,7 @@ func collision_detection() -> void:
 	var results = space_state.intersect_shape(shape_query)
 	var hitting_enemy = null
 	for result in results:
-		if result.collider.is_in_group("villains"):
+		if result.collider.is_in_group("villains") && result.collider.position.y == self.position.y:
 			print("⚠️ Hit an enemy with projectile at " + str(position.x) + ", " + str(position.y))
 			hitting_enemy = result.collider
 			break

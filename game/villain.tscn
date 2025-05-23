@@ -14,6 +14,7 @@ metadata/strength = 30.0
 metadata/starting_health = 100.0
 metadata/damage_sprite = NodePath("damage_sprite")
 metadata/damage_timer = NodePath("Timer")
+metadata/blocked_tile_ids = PackedInt32Array(0)
 
 [node name="Russian" type="Sprite2D" parent="."]
 texture = ExtResource("2_hig5a")

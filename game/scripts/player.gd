@@ -23,15 +23,19 @@ func _physics_process(_delta: float) -> void:
 	input_dir = Vector2.ZERO
 	if Input.is_action_pressed("ui_down"):
 		input_dir.y = 1
+		$Mongol.rotation_degrees = 0
 		emit_signal("player_did_a_move")
 	elif Input.is_action_pressed("ui_up"):
 		input_dir.y = -1
+		$Mongol.rotation_degrees = 180
 		emit_signal("player_did_a_move")
 	if Input.is_action_pressed("ui_right"):
 		input_dir.x = 1
+		$Mongol.rotation_degrees = 270
 		emit_signal("player_did_a_move")
 	elif Input.is_action_pressed("ui_left"):
 		input_dir.x = -1
+		$Mongol.rotation_degrees = 90
 		emit_signal("player_did_a_move")
 		
 	if (Input.is_action_just_pressed("ui_select")):

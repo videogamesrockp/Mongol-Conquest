@@ -16,7 +16,7 @@ func spawnArmy(rows, columns) -> void:
 	for i in range(rows):
 		for j in range(columns):
 			var villain = villain_scene.instantiate()
-			villain.position = Vector2(32 * j + 832, 32 * i);
+			villain.position = Vector2(32 * j + 832, 32 * i + 128);
 			villain.player_node = player
 			villain.tilemap_layer_node = tilemaplayer
 			army.append(villain)

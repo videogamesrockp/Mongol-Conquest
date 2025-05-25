@@ -24,12 +24,25 @@ func _ready() -> void:
 	health = self.get_meta("starting_health")
 	add_to_group("villains")
 
-
-
 func _physics_process(_delta: float) -> void:
 	update()
 
+
+
+func find_nearest(x : int) -> int:
+	var angles = [0, 0.5, 1, -0.5]
+	var nearest = 0
+	
+	for n in angles:
+		if abs(x - n) < abs(x - nearest):
+			nearest = n
+	
+	return nearest
+
 func move() -> void:
+	var vectToPlayer = player_node.position - self.position
+	var angle_to_face = atan2(vectToPlayer.y, vectToPlayer.x) / PI
+	print(find_nearest(angle_to_face))
 	pos.x -= 32;
 	position = pos
 		

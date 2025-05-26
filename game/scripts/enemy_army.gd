@@ -30,6 +30,15 @@ func spawnArmy(rows, columns) -> void:
 			counter += 1
 			enemyTargetPos.append(villain.position)
 			enemyCurrentPos.append(villain.position)
+			villain.enemy_died.connect(_removeDead)
+
+func _removeDead(enemyIndex):
+	army.remove_at(enemyIndex)
+	enemyTargetPos.remove_at(enemyIndex)
+	enemyCurrentPos.remove_at(enemyIndex)
+	for i in range(enemyIndex, len(army)):
+		army[i].myIndex -= 1
+	
 
 func _updateNextPos(target, enemyIndex, currentPos, enemy):
 	var canMove = true
@@ -37,7 +46,7 @@ func _updateNextPos(target, enemyIndex, currentPos, enemy):
 	for i in range(len(enemyTargetPos)):
 		if i == enemyIndex:
 			continue
-		if target == enemyTargetPos[i] or target == enemyCurrentPos[i]:
+		if target == enemyTargetPos[i] or target == enemyCurrentPos[i] :
 			canMove = false
 			enemy.path[0] = enemy.position
 	

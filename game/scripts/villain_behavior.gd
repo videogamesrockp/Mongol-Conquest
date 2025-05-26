@@ -13,6 +13,7 @@ var moving := false
 var blocked_tile_ids : Array
 var myIndex
 var damageSprite
+signal enemy_died(index)
 
 signal nextPos(target: Vector2, enemyIndex: int, currentPos: Vector2, enemy: Node)
 func emitNextTarget():
@@ -129,6 +130,8 @@ func move_along_path() -> void:
 
 func update() -> void:
 	if (health <= 0):
+		emit_signal("enemy_died", myIndex)
+
 		self.queue_free()
 	
 func take_damage(dmg: int) -> void:

@@ -7,7 +7,7 @@ var hitting_tile = false;
 var tilemap_layer
 var blocked_tile_ids
 var health = 100
-const projectile_scene = preload("res://projectile.tscn")
+const projectile_scene = preload("res://scenes/components/projectile.tscn")
 signal player_did_a_move
 
 

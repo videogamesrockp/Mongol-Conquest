@@ -1,7 +1,7 @@
 extends Node
 
 
-const villain_scene = preload("res://villain.tscn")
+const villain_scene = preload("res://scenes/components/villain.tscn")
 var player
 var tilemaplayer
 var army = []
@@ -17,13 +17,5 @@ func spawnArmy(rows, columns) -> void:
 		for j in range(columns):
 			var villain = villain_scene.instantiate()
 			villain.position = Vector2(32 * j + 832, 32 * i);
-			villain.player_node = player
-			villain.tilemap_layer_node = tilemaplayer
 			army.append(villain)
 			add_child(villain)
-
-
-func army_movement_timer() -> void:
-	for c in army:
-		if c:
-			c.move()

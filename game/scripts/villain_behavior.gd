@@ -6,20 +6,16 @@ var health
 var damage_sprite : Sprite2D
 var timer : Timer
 const TILE_SIZE = 32
-const TURNS_TO_MOVE: int = 1
-var blocked_tile_ids
 
-
-var tilemap_layer_node: TileMapLayer = null
-var player_node: CharacterBody2D = null
-
-var pathfinding_grid: AStarGrid2D = AStarGrid2D.new()
-var path_to_player: Array = []
-var turn_counter: int = 1
+# Pathfinding variables
+var player : Node2D
+var tilemap_layer : Node
+var path : Array = []
+var moving := false
+var blocked_tile_ids : Array
 
 func _ready() -> void:
-	blocked_tile_ids = self.get_meta("blocked_tile_ids")
-	pos = self.position;
+	pos = self.position
 	timer = get_node(self.get_meta("damage_timer"))
 	damage_sprite = get_node(self.get_meta("damage_sprite"))
 	damage_sprite.set_visible(false)
@@ -27,40 +23,98 @@ func _ready() -> void:
 	health = self.get_meta("starting_health")
 	add_to_group("villains")
 	
-	player_node.player_did_a_move.connect(_move_ai)
-	
-	pathfinding_grid.region = tilemap_layer_node.get_used_rect()
-	pathfinding_grid.cell_size = Vector2(TILE_SIZE, TILE_SIZE)
-	pathfinding_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES
-	pathfinding_grid.update()
-	
-	for cell in tilemap_layer_node.get_used_cells():
-		pathfinding_grid.set_point_solid(cell, true)
-		
-	_move_ai()
-	
-func _move_ai():
-	path_to_player = pathfinding_grid.get_point_path(global_position / TILE_SIZE, player_node.global_position / TILE_SIZE)
-	
-	if turn_counter != TURNS_TO_MOVE:
-		turn_counter += 1
-	else:
-		if path_to_player.size() > 1:
-			path_to_player.remove_at(0)
-			var go_to_pos: Vector2 = path_to_player[0] + Vector2(TILE_SIZE/2.0, TILE_SIZE/2.0)
-					
-			global_position = go_to_pos
-		
-		
-			turn_counter = 1
+	# Get references for pathfinding
+	var enemy_army = get_parent()
+	player = enemy_army.player
+	tilemap_layer = enemy_army.tilemaplayer
+	blocked_tile_ids = player.get_meta("blocked_tile_ids")
 
 func _physics_process(_delta: float) -> void:
 	update()
+	if not moving and player:
+		find_path_to_player()
+		move_along_path()
 
-func move() -> void:
-	pos.x -= 32;
-	position = pos
+func find_path_to_player() -> void:
+	path.clear()
+	var start_pos := Vector2i(position.x / TILE_SIZE, position.y / TILE_SIZE)
+	var end_pos := Vector2i(player.position.x / TILE_SIZE, player.position.y / TILE_SIZE)
+	
+	path = astar_pathfinding(start_pos, end_pos)
+
+func astar_pathfinding(start: Vector2i, end: Vector2i) -> Array:
+	var frontier := []
+	var came_from := {}
+	var cost_so_far := {}
+	
+	frontier.push_back(start)
+	came_from[start] = null
+	cost_so_far[start] = 0
+	
+	while not frontier.is_empty():
+		var current = frontier.pop_front()
 		
+		if current == end:
+			break
+			
+		for next in get_neighbors(current):
+			var new_cost = cost_so_far[current] + 1
+			
+			if not cost_so_far.has(next) or new_cost < cost_so_far[next]:
+				cost_so_far[next] = new_cost
+				var priority = new_cost + manhattan_distance(next, end)
+				frontier.push_back(next)
+				frontier.sort_custom(func(a, b): return manhattan_distance(a, end) < manhattan_distance(b, end))
+				came_from[next] = current
+	
+	# Reconstruct path
+	var path_array := []
+	var current = end
+	
+	while current != start:
+		if not came_from.has(current):
+			return []
+		path_array.push_front(current)
+		current = came_from[current]
+	
+	return path_array
+
+func get_neighbors(pos: Vector2i) -> Array:
+	var neighbors := []
+	var directions := [Vector2i(0, 1), Vector2i(1, 0), Vector2i(0, -1), Vector2i(-1, 0)]
+	
+	for dir in directions:
+		var next = pos + dir
+		if is_valid_tile(next):
+			neighbors.append(next)
+	
+	return neighbors
+
+func is_valid_tile(pos: Vector2i) -> bool:
+	if tilemap_layer:
+		var tile_id = tilemap_layer.get_cell_source_id(pos)
+		return not (tile_id in blocked_tile_ids)
+	return true
+
+func manhattan_distance(a: Vector2i, b: Vector2i) -> int:
+	return abs(a.x - b.x) + abs(a.y - b.y)
+
+func move_along_path() -> void:
+	if path.is_empty():
+		return
+		
+	var next_point = path[0]
+	var target_pos = Vector2(next_point.x * TILE_SIZE, next_point.y * TILE_SIZE)
+	
+	if position.distance_to(target_pos) < 1:
+		path.pop_front()
+		return
+	
+	moving = true
+	var tween = create_tween()
+	tween.tween_property(self, "position", target_pos, 0.25)
+	tween.tween_callback(func(): moving = false)
+
 func update() -> void:
 	if (health <= 0):
 		self.queue_free()
@@ -69,7 +123,6 @@ func take_damage(dmg: int) -> void:
 	damage_sprite.set_visible(true)
 	timer.start()
 	health -= dmg
-
 
 func _on_damage_timer() -> void:
 	damage_sprite.set_visible(false)

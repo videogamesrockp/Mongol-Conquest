@@ -15,7 +15,7 @@ metadata/damage = 40.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(16, 16)
-scale = Vector2(0.021, 0.0527307)
+scale = Vector2(0.396, 1)
 texture = ExtResource("1_a85iw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

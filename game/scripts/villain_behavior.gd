@@ -13,6 +13,7 @@ var tilemap_layer : Node
 var path : Array = []
 var moving := false
 var blocked_tile_ids : Array
+var last_moved = false
 
 func _ready() -> void:
 	pos = self.position
@@ -30,10 +31,15 @@ func _ready() -> void:
 	blocked_tile_ids = player.get_meta("blocked_tile_ids")
 
 func _physics_process(_delta: float) -> void:
-	update()
-	if not moving and player:
-		find_path_to_player()
-		move_along_path()
+	if last_moved:
+		last_moved = false
+		pass
+	else:
+		update()
+		if not moving and player:
+			find_path_to_player()
+			move_along_path()
+		last_moved = true
 
 func find_path_to_player() -> void:
 	path.clear()

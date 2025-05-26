@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvxhxkacfvjhu"]
+
+[ext_resource type="Script" uid="uid://doxfuv2kms430" path="res://scripts/enemy_army_1.gd" id="1_spg6r"]
+[ext_resource type="PackedScene" path="res://scenes/components/russian.tscn" id="2_2g722"]
+
+[node name="Enemy Army" type="Node"]
+script = ExtResource("1_spg6r")
+metadata/player = NodePath("../Player")
+metadata/tilemap_layer = NodePath("../TileMapLayer")
+metadata/villain_scene = ExtResource("2_2g722")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.3
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="army_movement_timer"]

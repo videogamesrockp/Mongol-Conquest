@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0n5bwqa8b5b4"
-path="res://.godot/imported/blood.png-a51904cfa52afa5bda5d94341071eb7f.ctex"
+uid="uid://oxbwlb4b4thb"
+path="res://.godot/imported/hurt_russianboy.png-d580875ef8af5c7c6cb8121187cfcc5f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/blood.png"
-dest_files=["res://.godot/imported/blood.png-a51904cfa52afa5bda5d94341071eb7f.ctex"]
+source_file="res://assets/sprites/hurt_russianboy.png"
+dest_files=["res://.godot/imported/hurt_russianboy.png-d580875ef8af5c7c6cb8121187cfcc5f.ctex"]
 
 [params]
 

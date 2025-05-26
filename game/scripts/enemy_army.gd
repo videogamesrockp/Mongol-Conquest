@@ -1,7 +1,7 @@
 extends Node
 
 
-const villain_scene = preload("res://scenes/components/villain.tscn")
+var villain_scene
 var player
 var tilemaplayer
 var army = []
@@ -9,6 +9,7 @@ var enemyTargetPos = []
 var enemyCurrentPos = []
 
 func _ready() -> void:
+	villain_scene = get_meta("villain_scene")
 	tilemaplayer = get_node(get_meta("tilemap_layer"))
 	player = get_node(get_meta("player"))
 	spawnArmy(4, 2)

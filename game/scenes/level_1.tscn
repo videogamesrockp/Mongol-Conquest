@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://17gwpy048vly" path="res://assets/field/grass.png" id="2_fcfvj"]
 [ext_resource type="Script" uid="uid://clsqxijf87bkb" path="res://scripts/tilemap.gd" id="3_fcfvj"]
 [ext_resource type="Script" uid="uid://hn7bvnehtktv" path="res://scripts/enemy_army.gd" id="3_rus8k"]
-[ext_resource type="PackedScene" path="res://scenes/components/villain.tscn" id="7_pa8r4"]
+[ext_resource type="PackedScene" uid="uid://b8be58y44pvq" path="res://scenes/components/russian.tscn" id="7_pa8r4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pa8r4"]
 texture = ExtResource("1_4nkto")

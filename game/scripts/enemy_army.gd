@@ -9,7 +9,7 @@ var army = []
 func _ready() -> void:
 	tilemaplayer = get_node(get_meta("tilemap_layer"))
 	player = get_node(get_meta("player"))
-	spawnArmy(1, 2)
+	spawnArmy(4, 2)
 
 
 func spawnArmy(rows, columns) -> void:

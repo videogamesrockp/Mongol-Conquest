@@ -8,8 +8,7 @@ var tilemap_layer
 var blocked_tile_ids
 var health = 100
 const projectile_scene = preload("res://scenes/components/projectile.tscn")
-signal player_did_a_move
-
+var facing = Vector2(0, 1)
 
 func _ready():
 	tilemap_layer = get_node(self.get_meta("tilemap"))
@@ -24,19 +23,19 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("ui_down"):
 		input_dir.y = 1
 		$Mongol.rotation_degrees = 0
-		emit_signal("player_did_a_move")
+		facing = Vector2(0, 1)
 	elif Input.is_action_pressed("ui_up"):
 		input_dir.y = -1
 		$Mongol.rotation_degrees = 180
-		emit_signal("player_did_a_move")
-	if Input.is_action_pressed("ui_right"):
+		facing = Vector2(0, -1)
+	elif Input.is_action_pressed("ui_right"):
 		input_dir.x = 1
 		$Mongol.rotation_degrees = 270
-		emit_signal("player_did_a_move")
+		facing = Vector2(1, 0)
 	elif Input.is_action_pressed("ui_left"):
 		input_dir.x = -1
 		$Mongol.rotation_degrees = 90
-		emit_signal("player_did_a_move")
+		facing = Vector2(-1, 0)
 		
 	if (Input.is_action_just_pressed("ui_select")):
 		spawn_bullet()
@@ -98,7 +97,7 @@ func collision_detection() -> void:
 			
 func spawn_bullet() -> void:
 	var proj = projectile_scene.instantiate()
-	proj.set_velocity(Vector2(256, 0))
+	proj.set_velocity(facing * 256)
 	self.get_parent().add_child(proj)
 	proj.position = position
 	proj.position.y = int(proj.position.y / tile_size) * tile_size

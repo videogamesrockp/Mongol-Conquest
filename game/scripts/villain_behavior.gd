@@ -7,13 +7,11 @@ var damage_sprite : Sprite2D
 var timer : Timer
 const TILE_SIZE = 32
 
-# Pathfinding variables
 var player : Node2D
 var tilemap_layer : Node
 var path : Array = []
 var moving := false
 var blocked_tile_ids : Array
-var last_moved = false
 
 func _ready() -> void:
 	pos = self.position
@@ -24,22 +22,16 @@ func _ready() -> void:
 	health = self.get_meta("starting_health")
 	add_to_group("villains")
 	
-	# Get references for pathfinding
 	var enemy_army = get_parent()
 	player = enemy_army.player
 	tilemap_layer = enemy_army.tilemaplayer
 	blocked_tile_ids = player.get_meta("blocked_tile_ids")
 
 func _physics_process(_delta: float) -> void:
-	if last_moved:
-		last_moved = false
-		pass
-	else:
-		update()
-		if not moving and player:
-			find_path_to_player()
-			move_along_path()
-		last_moved = true
+	update()
+	if not moving and player:
+		find_path_to_player()
+		move_along_path()
 
 func find_path_to_player() -> void:
 	path.clear()
@@ -73,7 +65,6 @@ func astar_pathfinding(start: Vector2i, end: Vector2i) -> Array:
 				frontier.sort_custom(func(a, b): return manhattan_distance(a, end) < manhattan_distance(b, end))
 				came_from[next] = current
 	
-	# Reconstruct path
 	var path_array := []
 	var current = end
 	
@@ -118,7 +109,7 @@ func move_along_path() -> void:
 	
 	moving = true
 	var tween = create_tween()
-	tween.tween_property(self, "position", target_pos, 0.25)
+	tween.tween_property(self, "position", target_pos, 0.75)  # Slower movement - takes 0.75 seconds per tile
 	tween.tween_callback(func(): moving = false)
 
 func update() -> void:

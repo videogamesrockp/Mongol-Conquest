@@ -36,6 +36,8 @@ func _ready() -> void:
 	player = enemy_army.player
 	tilemap_layer = enemy_army.tilemaplayer
 	blocked_tile_ids = player.get_meta("blocked_tile_ids")
+	
+	player.player_moved.connect(find_path_to_player)
 
 func _physics_process(_delta: float) -> void:
 	update()

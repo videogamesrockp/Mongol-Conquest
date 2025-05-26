@@ -9,6 +9,7 @@ var blocked_tile_ids
 var health = 100
 const projectile_scene = preload("res://scenes/components/projectile.tscn")
 var facing = Vector2(0, 1)
+signal player_moved
 
 func _ready():
 	tilemap_layer = get_node(self.get_meta("tilemap"))
@@ -63,6 +64,7 @@ func move():
 	tween.tween_callback(Callable(self, "move_false"))
 
 func move_false():
+	emit_signal("player_moved")
 	moving = false
 
 func collision_detection() -> void:

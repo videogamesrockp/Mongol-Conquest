@@ -22,7 +22,7 @@ func spawnArmy(rows, columns) -> void:
 			if j % 2 == 0:
 				continue
 			var villain = villain_scene.instantiate()
-			villain.position = Vector2(32 * j + 832, 32 * i);
+			villain.position = Vector2(32 * j + 320, 32 * i);
 			army.append(villain)
 			add_child(villain)
 			villain.myIndex = counter

@@ -6,12 +6,23 @@ var health
 var damage_sprite : Sprite2D
 var timer : Timer
 const TILE_SIZE = 32
+var canMove = true
 
 var player : Node2D
 var tilemap_layer : Node
 var path : Array = []
 var moving := false
 var blocked_tile_ids : Array
+var myIndex
+
+signal nextPos(target: Vector2, enemyIndex: int, currentPos: Vector2, enemy: Node)
+func emitNextTarget():
+	var target
+	if path[0]:
+		target = Vector2(path[0].x * TILE_SIZE, path[0].y * TILE_SIZE)
+	else:
+		target = self.position
+	emit_signal("nextPos", target, myIndex, self.position, self)
 
 func _ready() -> void:
 	pos = self.position
@@ -31,7 +42,10 @@ func _physics_process(_delta: float) -> void:
 	update()
 	if not moving and player:
 		find_path_to_player()
-		move_along_path()
+		emitNextTarget()
+		if(canMove):
+			move_along_path()
+	
 
 func find_path_to_player() -> void:
 	path.clear()

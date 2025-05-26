@@ -98,7 +98,6 @@ func collision_detection() -> void:
 func spawn_bullet() -> void:
 	var proj = projectile_scene.instantiate()
 	proj.set_velocity(facing * 256)
+	proj.rotation_degrees = $Mongol.rotation_degrees + 90
 	self.get_parent().add_child(proj)
-	proj.position = position
-	proj.position.y = int(proj.position.y / tile_size) * tile_size
-	proj.position.x += tile_size
+	proj.position = position + Vector2(tile_size/2, tile_size/2)

@@ -26,7 +26,6 @@ func collision_detection() -> void:
 	var results = space_state.intersect_shape(shape_query)
 	var hitting_enemy = null
 	for result in results:
-		if result.collider.is_in_group("villains") && result.collider.position.y == self.position.y:
 			print("⚠️ Hit an enemy with projectile at " + str(position.x) + ", " + str(position.y))
 			hitting_enemy = result.collider
 			break

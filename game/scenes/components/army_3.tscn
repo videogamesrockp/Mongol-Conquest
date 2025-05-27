@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://blra6l81fv7vg"]
 
 [ext_resource type="Script" uid="uid://1u0fx6hflq4f" path="res://scripts/army_3.gd" id="1_yalom"]
-[ext_resource type="PackedScene" uid="uid://co0p5utimjeb3" path="res://scenes/components/russian.tscn" id="2_nehyu"]
+[ext_resource type="PackedScene" uid="uid://bqovwytp2iig4" path="res://scenes/components/arab.tscn" id="2_yalom"]
 
 [node name="Enemy Army" type="Node"]
 script = ExtResource("1_yalom")
 metadata/player = NodePath("../Player")
 metadata/tilemap_layer = NodePath("../TileMapLayer")
-metadata/villain_scene = ExtResource("2_nehyu")
+metadata/villain_scene = ExtResource("2_yalom")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.3

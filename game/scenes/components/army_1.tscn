@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ca0ubljkk67sr"]
 
 [ext_resource type="Script" uid="uid://hn7bvnehtktv" path="res://scripts/army_1.gd" id="1_ei54o"]
-[ext_resource type="PackedScene" path="res://scenes/components/russian.tscn" id="2_vo7um"]
+[ext_resource type="PackedScene" uid="uid://co0p5utimjeb3" path="res://scenes/components/russian.tscn" id="2_vo7um"]
 
 [node name="Enemy Army" type="Node"]
 script = ExtResource("1_ei54o")

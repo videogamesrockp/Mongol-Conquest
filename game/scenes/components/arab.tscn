@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bqovwytp2iig4"]
 
 [ext_resource type="Script" uid="uid://dwnuhaehthqsh" path="res://scripts/villain_behavior.gd" id="1_hprey"]
-[ext_resource type="Texture2D" uid="uid://oxbwlb4b4thb" path="res://assets/sprites/hurt_russianboy.png" id="2_g8rxj"]
-[ext_resource type="Texture2D" uid="uid://c7xidgr5v3gci" path="res://assets/sprites/russianboy.png" id="3_w7dmq"]
+[ext_resource type="Texture2D" uid="uid://43e0ho2nreve" path="res://assets/sprites/hurt_arab.png" id="2_hprey"]
+[ext_resource type="Texture2D" uid="uid://dl15hcob3wids" path="res://assets/sprites/arab.png" id="3_g8rxj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_014kd"]
 size = Vector2(32, 32)
@@ -13,10 +13,10 @@ script = ExtResource("1_hprey")
 metadata/strength = 30.0
 metadata/starting_health = 100.0
 metadata/blocked_tile_ids = PackedInt32Array(0)
-metadata/damage_sprite = ExtResource("2_g8rxj")
+metadata/damage_sprite = ExtResource("2_hprey")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("3_w7dmq")
+texture = ExtResource("3_g8rxj")
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

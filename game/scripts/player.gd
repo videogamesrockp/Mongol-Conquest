@@ -17,9 +17,16 @@ func _ready():
 	
 func _physics_process(_delta: float) -> void:
 		
+		
+	if (Input.is_action_just_pressed("ui_select")):
+		spawn_bullet()
+	
+	collision_detection()
+
+	
 	if moving:
 		return
-	
+			
 	input_dir = Vector2.ZERO
 	if Input.is_action_pressed("ui_down"):
 		input_dir.y = 1
@@ -37,12 +44,6 @@ func _physics_process(_delta: float) -> void:
 		input_dir.x = -1
 		$Mongol.rotation_degrees = 90
 		facing = Vector2(-1, 0)
-		
-	if (Input.is_action_just_pressed("ui_select")):
-		spawn_bullet()
-	
-	
-	collision_detection()
 	
 
 	if input_dir != Vector2.ZERO:

@@ -16,7 +16,7 @@ func _on_cleared() -> void:
 	var file = FileAccess.open(save_location, FileAccess.WRITE)
 	file.store_var(contents_to_save.duplicate())
 	file.close()
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/level_2.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

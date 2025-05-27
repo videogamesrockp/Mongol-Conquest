@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8be58y44pvq"]
+[gd_scene load_steps=5 format=3 uid="uid://co0p5utimjeb3"]
 
 [ext_resource type="Script" uid="uid://dwnuhaehthqsh" path="res://scripts/villain_behavior.gd" id="1_hig5a"]
 [ext_resource type="Texture2D" uid="uid://oxbwlb4b4thb" path="res://assets/sprites/hurt_russianboy.png" id="2_5uc4c"]

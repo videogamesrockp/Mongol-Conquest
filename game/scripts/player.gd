@@ -83,7 +83,6 @@ func collision_detection() -> void:
 	var hitting_enemy = null
 	for result in results:
 		if result.collider.is_in_group("villains"):
-			print("⚠️ Currently getting hit by an enemy at " + str(position.x) + ", " + str(position.y))
 			hitting_enemy = result.collider
 			break
 	if hitting_enemy:
@@ -93,8 +92,8 @@ func collision_detection() -> void:
 			position.x += tile_size
 		health -= hitting_enemy.strength # change this
 		if health <= 0:
+			get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 			self.queue_free()
-			print ("you died!")
 		input_dir = Vector2.ZERO
 			
 func spawn_bullet() -> void:

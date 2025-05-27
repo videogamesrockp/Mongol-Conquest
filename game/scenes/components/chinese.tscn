@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://tevegguo2ssx"]
+[gd_scene load_steps=5 format=3 uid="uid://ckfp68jgkpq6o"]
 
 [ext_resource type="Script" uid="uid://dwnuhaehthqsh" path="res://scripts/villain_behavior.gd" id="1_sqnl5"]
 [ext_resource type="Texture2D" uid="uid://casspoi1b32fu" path="res://assets/sprites/hurt_chinese_sprite.png" id="2_sqnl5"]

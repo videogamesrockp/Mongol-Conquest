@@ -25,8 +25,6 @@ func emitNextTarget():
 	emit_signal("nextPos", target, myIndex, self.position, self)
 
 func _ready() -> void:
-	print(get_children())
-
 	damageSprite = get_meta("damage_sprite")
 	pos = self.position
 	strength = self.get_meta("strength")
@@ -137,4 +135,3 @@ func update() -> void:
 func take_damage(dmg: int) -> void:
 	health -= dmg
 	$Sprite.texture = damageSprite
-	print(damageSprite)

@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2t37bn8vsop4"]
+
+[ext_resource type="Script" uid="uid://dxs0tqjplmrod" path="res://scripts/level_2.gd" id="1_eqxsl"]
+[ext_resource type="PackedScene" uid="uid://pqstd6f6o75d" path="res://scenes/components/map_2.tscn" id="1_pbc48"]
+[ext_resource type="PackedScene" uid="uid://bch61jw6chgwy" path="res://scenes/components/player.tscn" id="2_eqxsl"]
+[ext_resource type="PackedScene" uid="uid://bib5tunmtqt06" path="res://scenes/components/army_2.tscn" id="3_eqxsl"]
+
+[node name="Level2" type="Node2D"]
+script = ExtResource("1_eqxsl")
+metadata/army = NodePath("Enemy Army")
+
+[node name="TileMapLayer" parent="." instance=ExtResource("1_pbc48")]
+
+[node name="Player" parent="." instance=ExtResource("2_eqxsl")]
+
+[node name="Enemy Army" parent="." instance=ExtResource("3_eqxsl")]

@@ -7,12 +7,13 @@ var tilemaplayer
 var army = []
 var enemyTargetPos = []
 var enemyCurrentPos = []
+signal all_dead
 
 func _ready() -> void:
 	villain_scene = get_meta("villain_scene")
 	tilemaplayer = get_node(get_meta("tilemap_layer"))
 	player = get_node(get_meta("player"))
-	spawnArmy(4, 2)
+	spawnArmy(6, 2)
 
 
 func spawnArmy(rows, columns) -> void:
@@ -38,6 +39,9 @@ func _removeDead(enemyIndex):
 	enemyCurrentPos.remove_at(enemyIndex)
 	for i in range(enemyIndex, len(army)):
 		army[i].myIndex -= 1
+		
+	if len(army) == 0:
+		emit_signal("all_dead")
 	
 
 func _updateNextPos(target, enemyIndex, currentPos, enemy):
@@ -49,7 +53,7 @@ func _updateNextPos(target, enemyIndex, currentPos, enemy):
 		if target == enemyTargetPos[i] or target == enemyCurrentPos[i] :
 			canMove = false
 			enemy.path[0] = enemy.position
-	
+
 	enemy.canMove = canMove
 		
 	enemyTargetPos[enemyIndex] = target

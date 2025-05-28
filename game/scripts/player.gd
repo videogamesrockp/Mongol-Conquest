@@ -61,7 +61,7 @@ func move():
 	moving = true
 	
 	var tween = create_tween()
-	tween.tween_property(self, "position", position + motion, 0.25)
+	tween.tween_property(self, "position", position + motion, 0.15)
 	tween.tween_callback(Callable(self, "move_false"))
 
 func move_false():

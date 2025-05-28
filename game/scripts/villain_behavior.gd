@@ -5,6 +5,7 @@ var strength
 var health
 const TILE_SIZE = 32
 var canMove = true
+var speed
 
 var player : Node2D
 var tilemap_layer : Node
@@ -25,6 +26,7 @@ func emitNextTarget():
 	emit_signal("nextPos", target, myIndex, self.position, self)
 
 func _ready() -> void:
+	speed = get_meta("speed")
 	damageSprite = get_meta("damage_sprite")
 	pos = self.position
 	strength = self.get_meta("strength")
@@ -123,7 +125,7 @@ func move_along_path() -> void:
 	
 	moving = true
 	var tween = create_tween()
-	tween.tween_property(self, "position", target_pos, 0.75)  # Slower movement - takes 0.75 seconds per tile
+	tween.tween_property(self, "position", target_pos, speed)  # Slower movement - takes 0.75 seconds per tile
 	tween.tween_callback(func(): moving = false)
 
 func update() -> void:

@@ -14,6 +14,7 @@ metadata/strength = 50.0
 metadata/starting_health = 150.0
 metadata/blocked_tile_ids = PackedInt32Array(0)
 metadata/damage_sprite = ExtResource("2_sqnl5")
+metadata/speed = 0.5
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("3_j4mhg")

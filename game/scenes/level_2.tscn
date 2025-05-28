@@ -12,5 +12,6 @@ metadata/army = NodePath("Enemy Army")
 [node name="TileMapLayer" parent="." instance=ExtResource("1_pbc48")]
 
 [node name="Player" parent="." instance=ExtResource("2_eqxsl")]
+metadata/blocked_tile_ids = PackedInt32Array(0, 6, 7, 4)
 
 [node name="Enemy Army" parent="." instance=ExtResource("3_eqxsl")]

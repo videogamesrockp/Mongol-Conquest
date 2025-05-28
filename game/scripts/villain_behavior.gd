@@ -134,4 +134,5 @@ func update() -> void:
 	
 func take_damage(dmg: int) -> void:
 	health -= dmg
-	$Sprite.texture = damageSprite
+	if health < 50:
+		$Sprite.texture = damageSprite

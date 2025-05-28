@@ -45,6 +45,8 @@ func _removeDead(enemyIndex):
 	
 
 func _updateNextPos(target, enemyIndex, currentPos, enemy):
+	if enemyIndex >= len(enemyTargetPos):
+		return
 	var canMove = true
 	
 	for i in range(len(enemyTargetPos)):
@@ -53,9 +55,7 @@ func _updateNextPos(target, enemyIndex, currentPos, enemy):
 		if target == enemyTargetPos[i] or target == enemyCurrentPos[i] :
 			canMove = false
 			enemy.path[0] = enemy.position
-
-	enemy.canMove = canMove
-		
+	enemy.canMove = canMove	
 	enemyTargetPos[enemyIndex] = target
 	enemyCurrentPos[enemyIndex] = currentPos
 		

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdp3nb8qiwdwj"]
+[gd_scene load_steps=8 format=3 uid="uid://bdp3nb8qiwdwj"]
 
 [ext_resource type="Script" uid="uid://5eprnq5c85cg" path="res://scripts/main_menu.gd" id="1_8ln24"]
 [ext_resource type="Texture2D" uid="uid://cjd66d2mjkpyi" path="res://assets/ui/main_menu.png" id="2_rtw2f"]
@@ -8,6 +8,31 @@
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fu7sn"]
 texture = ExtResource("2_rtw2f")
+
+[sub_resource type="GDScript" id="GDScript_8ln24"]
+resource_name = "levelText"
+script/source = "extends RichTextLabel
+
+const save_location = \"user://level.json\"
+
+func _ready() -> void:	
+	if FileAccess.file_exists(save_location):
+		var file = FileAccess.open(save_location, FileAccess.READ)
+		var data = file.get_var()
+		file.close()
+		
+		var save_data = data.duplicate()
+		
+		self.text = \"Level \"+ str(save_data.level)
+	else:
+		var file = FileAccess.open(save_location, FileAccess.WRITE)
+		file.store_var({\"level\": 1})
+		self.text = \"Level \" + str(1)
+		file.close()
+
+func _process(delta: float) -> void:
+	pass
+"
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -49,6 +74,15 @@ theme_override_constants/separation = 10
 [node name="ContinueButton" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("3_oa1go")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/ContinueButton"]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 66.0
+offset_right = 380.0
+offset_bottom = 96.0
+text = "LEVEL "
+script = SubResource("GDScript_8ln24")
 
 [node name="NewGameButton" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2

@@ -13,14 +13,14 @@ func _ready() -> void:
 	villain_scene = get_meta("villain_scene")
 	tilemaplayer = get_node(get_meta("tilemap_layer"))
 	player = get_node(get_meta("player"))
-	spawnArmy(6, 2)
+	spawnArmy(12, 4)
 
 
 func spawnArmy(rows, columns) -> void:
 	var counter = 0
 	for i in range(rows):
 		for j in range(columns):
-			if j % 2 == 0:
+			if j % 2 == 0 or i % 2 == 0 or i % 3 == 0:
 				continue
 			var villain = villain_scene.instantiate()
 			villain.position = Vector2(32 * j + 320, 32 * i);

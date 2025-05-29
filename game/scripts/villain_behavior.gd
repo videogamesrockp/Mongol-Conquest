@@ -19,7 +19,7 @@ signal enemy_died(index)
 signal nextPos(target: Vector2, enemyIndex: int, currentPos: Vector2, enemy: Node)
 func emitNextTarget():
 	var target
-	if path[0]:
+	if len(path) > 0:
 		target = Vector2(path[0].x * TILE_SIZE, path[0].y * TILE_SIZE)
 	else:
 		target = self.position

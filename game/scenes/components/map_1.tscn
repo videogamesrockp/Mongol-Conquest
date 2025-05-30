@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=4 uid="uid://c4gp0vxybjgag"]
 
-[ext_resource type="TileSet" uid="uid://qy10ejv8ypue" path="res://assets/tile_set.tres" id="1_dmhvh"]
+[ext_resource type="TileSet" uid="uid://jlmwj5wnyvvo" path="res://assets/tile_set.tres" id="1_dmhvh"]
 [ext_resource type="Script" uid="uid://clsqxijf87bkb" path="res://scripts/map.gd" id="3_1hn4d"]
 
 [node name="TileMapLayer" type="TileMapLayer"]

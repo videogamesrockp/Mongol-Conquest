@@ -13,7 +13,7 @@ func _ready() -> void:
 	villain_scene = get_meta("villain_scene")
 	tilemaplayer = get_node(get_meta("tilemap_layer"))
 	player = get_node(get_meta("player"))
-	spawnArmy(6, 3)
+	spawnArmy(6, 5)
 
 
 func spawnArmy(rows, columns) -> void:
